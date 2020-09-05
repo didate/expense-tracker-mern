@@ -1,6 +1,6 @@
 On my way to learn ReactJS
 
-<img src="result.png" max-width="50" />
+<img src="result.png" width="50"/>
 
 ## Features
 

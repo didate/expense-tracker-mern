@@ -1,6 +1,7 @@
 On my way to learn ReactJS
 
-<img src="result.png" width="50"/>
+
+<img src="result.PNG" width="48">
 
 ## Features
 

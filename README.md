@@ -1,68 +1,53 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+In this project I used :
 
-### `npm start`
+* React Hooks
+* Context API
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### React Hooks Example
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```javascript
+import React from 'react'
 
-### `npm test`
+export const Transaction = ({ transaction }) => {
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    const sign = transaction.amount < 0 ? '-' : '+'
+    return (
+        <li className={transaction.amount < 0 ? 'minus' : 'plus'}>
+            {transaction.text} <span>{sign}{Math.abs(transaction.amount)}</span><button className="delete-btn">x</button>
+        </li>
+    )
+}
+```
+#### Context API
 
-### `npm run build`
+```javascript
+import React, { createContext, useReducer } from 'react';
+import AppReducer from './AppReducer'
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+//Initial State
+const initialState = {
+    transactions: [
+        { id: 1, text: 'Flower', amount: -20 },
+        { id: 2, text: 'Salary', amount: 300 },
+        { id: 3, text: 'Book', amount: -10 },
+        { id: 4, text: 'Camera', amount: 150 }
+    ]
+}
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+// Create Context
+export const GlobalContext = createContext(initialState);
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+// Provider component
 
-### `npm run eject`
+const GlobalProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(AppReducer, initialState);
+    return (<GlobalContext.Provider value={{ transactions: state.transactions }}>{children}</GlobalContext.Provider>)
+}
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+export default GlobalProvider;
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

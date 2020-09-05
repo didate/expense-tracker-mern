@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+On my way to learn ReactJS
+
+![alt text](result.PNG "Logo Title Text 1")
 
 ## Features
 

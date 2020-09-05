@@ -1,6 +1,6 @@
 On my way to learn ReactJS
 
-![alt text](result.PNG "Logo Title Text 1")
+<img src="result.png" max-width="50" />
 
 ## Features
 
